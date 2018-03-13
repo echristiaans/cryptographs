@@ -19,17 +19,17 @@ Surely there is lots of room for improvement but feel free to use these scripts 
 ## Requirements
 Python is required to run the Python scripts
 At a minimum you will require the following modules:
-- [requests][http://docs.python-requests.org/en/master/user/install/]
+- [requests](http://docs.python-requests.org/en/master/user/install/)
 - json, which is part of the standard library
-- [pymysql][http://pymysql.readthedocs.io/en/latest/user/installation.html]
+- [pymysql](http://pymysql.readthedocs.io/en/latest/user/installation.html)
 
-These modules can be installed using pip. If you do not have [pip][https://pip.pypa.io/en/stable/installing/] installed:
+These modules can be installed using pip. If you do not have [pip](https://pip.pypa.io/en/stable/installing/) installed:
 ```
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 ```
 
-If you want to import into Elasticsearch, you will require the [Elasticsearch][https://github.com/elastic/elasticsearch-py] module.
+If you want to import into Elasticsearch, you will require the [Elasticsearch](https://github.com/elastic/elasticsearch-py) module.
 
 You need access to a MySQL server on which you can create the "crypto" database. Use the "createDB.sql" script to create the database and tables.
 
@@ -74,6 +74,7 @@ I have made the script executable using `chmod +x /opt/python/pullCryptoIntoDb.p
 
 ## Dependencies
 Python on the host you run the scripts
+
 A web server with PHP for displaying the graphs
 
 ## License
