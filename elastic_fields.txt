@@ -1,0 +1,37 @@
+PUT crypto
+{
+	"mappings" : {
+	  "coins" : {
+        "properties" : {
+          "timestamp" : {
+            "type" : "date",
+            "format" : "yyyy-MM-dd HH:mm"
+          },
+          "name" : {
+            "type" " "text"
+          },
+          "symbol" : {
+            "type" : "text"
+          },
+          "purchase_value" : {
+            "type" : "float"
+          },
+          "purchase_amount" : {
+            "type" : "float"
+          },
+          "current_price" : {
+            "type" : "float"
+           },
+          "current_value" : {
+            "type" : "float"
+          },
+          "percentage" : {
+            "type" : "half_float"
+          },
+          "coin_profit" : {
+            "type" : "float"
+          }
+        }
+	  }
+	}
+}
