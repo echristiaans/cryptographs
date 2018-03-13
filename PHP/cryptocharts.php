@@ -41,6 +41,8 @@ replace COIN_SHORT_NAME for the short name of your coin, e.g. ETH
   $BTCCurrentPriceQuery = "SELECT coinCurrentPrice, timeStamp FROM coins where coinShortName='BTC' ORDER BY timeStamp DESC limit 1";
   // Form the SQL query that gets the totals from the database
   $trQuery = "SELECT CAST(timeStamp as DATE) ts, totalProfit, totalCurrentValue FROM totals ORDER by timeStamp ASC";
+  $currentProfitQuery = "SELECT totalProfit, timeStamp FROM totals ORDER by timeStamp DESC limit 1";
+  $currentValueQuery = "SELECT totalCurrentValue, timeStamp FROM totals ORDER by timeStamp DESC limit 1";
 
   // Execute the query, or else return the error message.
   $ETHresult = $dbhandle->query($ETHQuery) or exit("Error code ({$dbhandle->errno}): {$dbhandle->error}");
@@ -50,7 +52,8 @@ replace COIN_SHORT_NAME for the short name of your coin, e.g. ETH
   $BTCCurrentPrice = $dbhandle->query($BTCCurrentPriceQuery) or exit("Error code ({$dbhandle->errno}): {$dbhandle->error}");
   // Execute the query for the totals
   $trResult = $dbhandle->query($trQuery) or exit("Error code ({$dbhandle->errno}): {$dbhandle->error}");
-
+  $currentProfitResult = $dbhandle->query($currentProfitQuery) or exit("Error code ({$dbhandle->errno}): {$dbhandle->error}");
+  $currentValueResult = $dbhandle->query($currentValueQuery) or exit("Error code ({$dbhandle->errno}): {$dbhandle->error}");
 
   // If the query returns a valid response, prepare the JSON string
   if ($COIN_SHORT_NAMEresult) {
@@ -270,8 +273,22 @@ replace COIN_SHORT_NAME for the short name of your coin, e.g. ETH
               <center>
                   <!-- Total Profit Chart -->
                   <div id="chart-Totals">Total Profit Chart will render here!</div>
+                  <?php
+                    if ($currentProfitResult) {
+                      while($row = mysqli_fetch_array($currentProfitResult)) {
+                        echo '<br>Current profit is <b>€'.$row["totalProfit"].'</b><br>';
+                      }
+                    }
+                  ?>
                   <!-- Total Portfolio Value Chart -->
                   <div id="chart-TotalValue">Total Portfolio Value Chart will render here!</div>
+                  <?php
+                    if ($currentValueResult) {
+                      while($row = mysqli_fetch_array($currentValueResult)) {
+                        echo '<br>Current value is <b>€'.$row["totalCurrentValue"].'</b><br>';
+                      }
+                    }
+                  ?>
                   <!-- COIN_SHORT_NAME Chart -->
                   <div id="chart-COIN_SHORT_NAME">COIN_SHORT_NAME Chart will render here!</div>
                   <!-- Display the latest value of COIN_SHORT_NAME -->
