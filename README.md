@@ -1,5 +1,5 @@
 # cryptographs
-I have written this collection of scripts to practise my programming skills. I am not a developer by trade but took a few months off work to recharge the battery and decided it was fun to learn some programming. It has been on my list for quite some time to get a bit more in-depth programming skills (I know the basics) and this is the result.
+I have written this collection of scripts to practise my programming skills. I am not a developer by trade but took a few months off work to recharge the battery and decided it was fun to learn some programming. It has been on my list for quite some time to get a bit more in-depth programming skills (I know the basics) and this is the first result.
 
 I have a few crypto currencies in my portfolio and got tired of updating my Google Sheet on a daily basis and thought "I can do this better and automated". Hence the creation of this set of scripts.
 
