@@ -20,6 +20,13 @@ replace COIN_SHORT_NAME for the short name of your coin, e.g. ETH
  if ($dbhandle->connect_error) {
   exit("There was an error with your connection: ".$dbhandle->connect_error);
  }
+
+ // get the EUR/USD price
+ $url = "http://api.fixer.io/latest?base=USD";
+ $response = file_get_contents($url);
+ $json = json_decode($response, true);
+ $usd_eur_price = $json['rates']['EUR'];
+
 ?>
 <html>
 
@@ -271,12 +278,15 @@ replace COIN_SHORT_NAME for the short name of your coin, e.g. ETH
   ?>
               <!-- Display the charts on the page -->
               <center>
+                  <?php
+                    echo 'USD/EUR Price is <b>'.$usd_eur_price.'</b><br>';
+                  ?>
                   <!-- Total Profit Chart -->
                   <div id="chart-Totals">Total Profit Chart will render here!</div>
                   <?php
                     if ($currentProfitResult) {
                       while($row = mysqli_fetch_array($currentProfitResult)) {
-                        echo '<br>Current profit is <b>€'.$row["totalProfit"].'</b><br>';
+                        echo '<br>Current profit is <b>€ '.$row["totalProfit"].' / $ '.round(($row["totalProfit"]/$usd_eur_price),2).'</b><br>';
                       }
                     }
                   ?>
@@ -285,7 +295,7 @@ replace COIN_SHORT_NAME for the short name of your coin, e.g. ETH
                   <?php
                     if ($currentValueResult) {
                       while($row = mysqli_fetch_array($currentValueResult)) {
-                        echo '<br>Current value is <b>€'.$row["totalCurrentValue"].'</b><br>';
+                        echo '<br>Current value is <b>€ '.$row["totalCurrentValue"].' / $ '.round(($row["totalCurrentValue"]/$usd_eur_price),2).'</b><br>';
                       }
                     }
                   ?>
@@ -295,7 +305,7 @@ replace COIN_SHORT_NAME for the short name of your coin, e.g. ETH
                   <?php
                     if ($COIN_SHORT_NAMECurrentPrice) {
                       while($row = mysqli_fetch_array($COIN_SHORT_NAMECurrentPrice)) {
-                        echo '<br>Latest price for COIN_SHORT_NAME is <b>€'.$row["coinCurrentPrice"].'</b><br>';
+                        echo '<br>Latest price for COIN_SHORT_NAME is <b>€ '.$row["coinCurrentPrice"].' / $ '.round(($row["coinCurrentPrice"]/$usd_eur_price),5).'</b><br>';
                       }
                     }
                   ?>
@@ -304,7 +314,7 @@ replace COIN_SHORT_NAME for the short name of your coin, e.g. ETH
                   <?php
                     if ($XRPCurrentPrice) {
                       while($row = mysqli_fetch_array($XRPCurrentPrice)) {
-                        echo '<br>Current price for XRP is <b>€'.$row["coinCurrentPrice"].'</b><br>';
+                        echo '<br>Current price for XRP is <b>€ '.$row["coinCurrentPrice"].' / $ '.round(($row["coinCurrentPrice"]/$usd_eur_price),5).'</b><br>';
                       }
                     }
                   ?>
